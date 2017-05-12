@@ -1,4 +1,4 @@
-TEST-AUX-BPS:Aux_On ; Aux_On ; uint ;  ;  ; state
+TEST-AUX-BPS:Aux_On; Aux_On ; uint ;  ;  ; state
 TEST-AUX-BPS:Auxiliaries ; Auxiliaries ; uint ;  ;  ; state
 TEST-AUX-BPS:BPS_Alarm ; BPS_Alarm ; uint ;  ;  ; state
 TEST-AUX-BPS:BPS_Fault ; BPS_Fault ; uint ;  ;  ; state
