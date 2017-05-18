@@ -1,0 +1,49 @@
+record( longin, "FALCON:PULSE:START")
+{
+   field(DTYP, "Soft Channel")
+}
+
+record( longin, "FALCON:PULSE:NUMBER")
+{
+   field(DTYP, "Soft Channel")
+}
+
+record( longin, "FALCON:FAST:STATUS_CMD")
+{
+   field(DTYP, "Soft Channel")
+}
+
+record( longin, "FALCON:FAST:STATUS")
+{
+   field(DTYP, "Soft Channel")
+}
+
+record( longin, "FALCON:FAST:ERROR")
+{
+   field(DTYP, "Soft Channel")
+}
+
+record( longin, "FALCON:FAST:ERROR_RST")
+{
+   field(DTYP, "Soft Channel")
+}
+
+record( longin, "FALCON:PONSAMP:STATUS_CMD")
+{
+   field(DTYP, "Soft Channel")
+}
+
+record( longin, "FALCON:PONSAMP:STATUS")
+{
+   field(DTYP, "Soft Channel")
+}
+
+record( longin, "FALCON:PONSAMP:ERROR")
+{
+   field(DTYP, "Soft Channel")
+}
+
+record( longin, "FALCON:PONSAMP:ERROR_RST")
+{
+   field(DTYP, "Soft Channel")
+}

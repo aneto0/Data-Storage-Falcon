@@ -1,0 +1,32 @@
+{
+    "pvlist": [
+    {
+        "name": "FALCON:PULSE:START",
+        "actions": [
+        {
+            "value": 0,
+            "command": "echo Ready to set new pulse $EPICS_BASE"
+        },      
+        {
+            "value": 0,
+            "command": "caput FALCON:PONSAMP:STATUS_CMD 0"
+        },
+        {
+            "value": 0,
+            "command": "caput FALCON:FAST:STATUS_CMD 0"
+        },
+        {
+            "value": 1,
+            "command": "CreateFalconPulse.sh"
+        },
+        {
+            "value": 1,
+            "command": "caput FALCON:PONSAMP:STATUS_CMD 1"
+        },
+        {
+            "value": 1,
+            "command": "caput FALCON:FAST:STATUS_CMD 1"
+        }]
+     }]
+}
+

@@ -1,7 +1,7 @@
 #
 # Compiles all the MDSPlus java tools and builds the MDSPlus trees
 #
-CLASSPATH=.:/usr/local/mdsplus/java/classes/MdsPlus.jar:/usr/local/mdsplus/java/classes/mdsobjects.jar:javax.json-1.0.jar:$(CODAC_ROOT)/lib/jca-2.3.6.jar
+CLASSPATH=.:/usr/local/mdsplus/java/classes/MdsPlus.jar:/usr/local/mdsplus/java/classes/mdsobjects.jar:javax.json-1.0.jar:$(CODAC_ROOT)/lib/jca-2.3.6.jar:$(CODAC_ROOT)/lib/caj-1.1.15.jar
 JFLAGS = 
 JC = javac
 JAVA = java
