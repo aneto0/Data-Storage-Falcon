@@ -25,8 +25,8 @@ export falcon_fast_path=$(TREE_LOCATION)
 CLASSES = \
 	ChannelArchiver.java  \
 	EpicsDispatcher.java  \
-	LoadEpicsConf.java  \
-	StoreEpicsConf.java \
+	LoadEpicsSnapshotFromMds.java  \
+	SaveEpicsSnapshotInMds.java \
 	Xml2MdsConfig.java \
 	Xml2MdsSnapshot.java \
 	Xml2MdsTrend.java
