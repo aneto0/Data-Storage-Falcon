@@ -464,10 +464,10 @@ public class ChannelArchiver
                 Data data = DBR2Data(dbr);
                 long time = DBR2Time(dbr);
                 int severity = CAStatus2Severity(e.getStatus());
-                System.out.println("Monitor: "+treeNodeName+ "  " +  saveTree);
+                System.out.print("Monitor: "+treeNodeName+ "  \r" +  saveTree);
                 if(time <= prevTime)  //A previous sample has been received
                 {
-                    System.out.println("PREVIOUS SAMPLE!!! Time: "+time + " Previous time: " + prevTime);
+                    //System.out.println("PREVIOUS SAMPLE!!! Time: "+time + " Previous time: " + prevTime);
                     return;
                 }
                 if(prevTime > 0 && ((time - prevTime)/1E9 > ignFuture)) //Too far in future
@@ -687,13 +687,13 @@ public class ChannelArchiver
                     try {
                         recName = new TreeNode(nids[i], tree).getData().getString();
                         recName = recName.trim();
-                        System.out.println("Scanning...."+recName);
+                        //System.out.println("Scanning...."+recName);
                         //Get VAL channel. It will remain open thorough the whole program execution
                         Channel valChan = ctxt.createChannel(recName+".VAL");
                         ctxt.pendIO(5.);
                         DBR valDbr = valChan.get();
                         ctxt.pendIO(5.);
-                        System.out.println("Monitoring Channel created.");
+                        //System.out.println("Monitoring Channel created.");
                         //valDbr.printInfo(System.out);
                         if(!valDbr.isENUM() && !valDbr.isCTRL()&&! valDbr.isINT())
                         {
@@ -746,7 +746,7 @@ public class ChannelArchiver
                         TreeNode severityNode = tree.getNode(nodeName+":ALARM");
                         java.lang.String scanMode = scanNode.getString().toUpperCase();
                         int segmentSize = getBufSize(tree, valNode);
-                        System.out.println("Monitoring channel started. Segment size: "+segmentSize);
+                        //System.out.println("Monitoring channel started. Segment size: "+segmentSize);
                         if(scanMode.equals("MONITOR"))
                         {
                             if(valDbr.isENUM() || valDbr.isCTRL() || valDbr.isINT())

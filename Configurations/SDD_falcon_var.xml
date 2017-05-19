@@ -32,12 +32,12 @@ TEST-AUX-BPS:Mod_Starting_Time_Read ; Mod_Starting_Time_Read ; uint ;  ;  ; stat
 TEST-AUX-BPS:Mod_Starting_Time_Write ; Mod_Starting_Time_Write ; uint ;  ;  ; configuration
 TEST-AUX-BPS:Module_1 ; Module_1 ; uint ;  ;  ; state
 TEST-AUX-BPS:Module_10 ; Module_10 ; uint ;  ;  ; state
-TEST-AUX-BPS:Module_11 ; Module_11 ; uint ;  ;  ; state
-TEST-AUX-BPS:Module_12 ; Module_12 ; uint ;  ;  ; state
-TEST-AUX-BPS:Module_13 ; Module_13 ; uint ;  ;  ; state
-TEST-AUX-BPS:Module_14 ; Module_14 ; uint ;  ;  ; state
-TEST-AUX-BPS:Module_15 ; Module_15 ; uint ;  ;  ; state
-TEST-AUX-BPS:Module_16 ; Module_16 ; uint ;  ;  ; state
+TEST-AUX-BPS:Module_11 ; Module_11 [TREND,MON] ; uint ;  ;  ; state
+TEST-AUX-BPS:Module_12 ; Module_12 [TREND,]; uint ;  ;  ; state
+TEST-AUX-BPS:Module_13 ; Module_13[TREND]; uint ;  ;  ; state
+TEST-AUX-BPS:Module_14 ; Module_14[] ; uint ;  ;  ; state
+TEST-AUX-BPS:Module_15 ; Module_15[TREND] ; uint ;  ;  ; state
+TEST-AUX-BPS:Module_16 ; Module_16[MON, TREND ] ; uint ;  ;  ; state
 TEST-AUX-BPS:Module_17 ; Module_17 ; uint ;  ;  ; state
 TEST-AUX-BPS:Module_18 ; Module_18 ; uint ;  ;  ; state
 TEST-AUX-BPS:Module_19 ; Module_19 ; uint ;  ;  ; state
