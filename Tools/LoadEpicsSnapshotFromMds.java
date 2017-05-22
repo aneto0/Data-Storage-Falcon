@@ -88,7 +88,7 @@ public class LoadEpicsSnapshotFromMds
                         DBR valDbr = valChan.get();
                         ctxt.pendIO(5.);
                         System.out.println("Writing value: " + valData + " read from " + nodeName + ":VAL into " + recName + ".VAL");
-                        valNode.putData(valData);
+                        //valNode.putData(valData);
                     }catch(Exception exc)
                     {
                         System.err.println("Error handling record "+ recName + " [" + nodeName + ":VAL] : " + exc);

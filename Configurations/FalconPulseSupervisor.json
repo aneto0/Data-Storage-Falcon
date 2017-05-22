@@ -11,6 +11,14 @@
             "value": 1,
             "command": "/home/codac-dev/Projects/Data-Storage-Falcon/Tools/StartFalconPulse.sh"
         }]
+     },
+     {
+        "name": "FALCON:PULSE:LOAD_CMD",
+        "actions": [
+        {
+            "value": 1,
+            "command": "/home/codac-dev/Projects/Data-Storage-Falcon/Tools/LoadFalconPulse.sh"
+        }]
      }]
 }
 

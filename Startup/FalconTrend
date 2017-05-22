@@ -73,7 +73,7 @@ case "$1" in
         ;;
   restart|reload)
         stop
-        sleep 20
+        sleep 2
         start
         ;;
   condrestart)
