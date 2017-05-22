@@ -1,0 +1,95 @@
+#############################################################
+##
+## Copyright 2015 F4E | European Joint Undertaking for ITER 
+##  and the Development of Fusion Energy ('Fusion for Energy')
+## 
+## Licensed under the EUPL, Version 1.1 or - as soon they 
+## will be approved by the European Commission - subsequent  
+## versions of the EUPL (the "Licence"); 
+## You may not use this work except in compliance with the 
+## Licence. 
+## You may obtain a copy of the Licence at: 
+##  
+## http://ec.europa.eu/idabc/eupl
+##
+## Unless required by applicable law or agreed to in 
+## writing, software distributed under the Licence is 
+## distributed on an "AS IS" basis, 
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+## express or implied. 
+## See the Licence for the specific language governing 
+## permissions and limitations under the Licence. 
+##
+##############################################################
+#!/bin/sh
+# 1. Copy this file to /etc/init.d/
+# 2. Change CODE_DIRECTORY and the configuration variables to the correct locations
+# 3. Run: /sbin/chkconfig --add FalconTrend
+# 4. Check if everything is ok by running: /sbin/chkconfig --list | grep FalconTrend
+# 5. Run: /sbin/chkconfig --level 3 FalconTrend on
+# 6. Run: /sbin/chkconfig --level 5 FalconTrend on
+# 7. Recheck everything by running: /sbin/chkconfig --list | grep FalconTrend
+# DESCRIPTION
+# 
+# chkconfig: - 98 35
+# description: Starts and stops the FalconTrend for the Falcon plant
+#To be executed in a cron daily
+
+PROJECT_NAME="Falcon Trend"
+CODE_DIRECTORY=/home/codac-dev/Projects/Data-Storage-Falcon
+CLASSPATH=/usr/local/mdsplus/java/classes/MdsPlus.jar:/usr/local/mdsplus/java/classes/mdsobjects.jar:$CODE_DIRECTORY/Build/:/opt/epics-3.15.5/lib/jca-2.3.6.jar:/opt/codac-5.4/lib/caj-1.1.15.jar
+LOG_FILE=/var/log/falcontrend
+TREE_NAME=falcon_trend
+APP_NAME=ChannelArchiver
+MDSPLUS_LOC="192.168.130.46:8000::/tmp"
+
+start() {
+    if pgrep -f $APP_NAME > /dev/null
+    then
+        echo $"Another instance of the $PROJECT_NAME already appears to be to running. If you sure that this isn't the case, manually kill the application and start the service again!"
+        exit 1
+    else
+        echo $"Starting $PROJECT_NAME"
+
+        export falcon=$MDSPLUS_LOC
+        export falcon_trend=$MDSPLUS_LOC
+        #Get the day
+        PULSE_NUMBER=`date +%G%m%d`
+        java -cp $CLASSPATH $APP_NAME $TREE_NAME $PULSE_NUMBER 2>&1 >> $LOG_FILE &
+    fi
+}
+
+stop() {
+    echo $"Shutting down $PROJECT_NAME"
+    pkill -f $APP_NAME
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        stop
+        sleep 20
+        start
+        ;;
+  condrestart)
+        ;;
+  status)
+        if pgrep -f $APP_NAME > /dev/null
+        then
+            echo $"running..."
+        else
+            echo $"stopped..."
+        fi
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+        exit 1
+esac
+
+exit $RETVAL
+

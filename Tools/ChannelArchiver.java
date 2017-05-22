@@ -464,7 +464,7 @@ public class ChannelArchiver
                 Data data = DBR2Data(dbr);
                 long time = DBR2Time(dbr);
                 int severity = CAStatus2Severity(e.getStatus());
-                System.out.print("Monitor: "+treeNodeName+ "  \r" +  saveTree);
+                System.out.println("Monitor: "+treeNodeName+ "  " +  saveTree);
                 if(time <= prevTime)  //A previous sample has been received
                 {
                     //System.out.println("PREVIOUS SAMPLE!!! Time: "+time + " Previous time: " + prevTime);

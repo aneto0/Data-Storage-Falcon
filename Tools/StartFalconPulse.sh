@@ -1,5 +1,13 @@
 #!/bin/sh
 
+#Export all the falcon tree paths
+MDSPLUS_LOC="192.168.130.46:8000::/tmp"
+export falcon=$MDSPLUS_LOC
+export falcon_mon=$MDSPLUS_LOC
+export falcon_trend=$MDSPLUS_LOC
+export falcon_conf=$MDSPLUS_LOC
+export falcon_fast=$MDSPLUS_LOC
+
 echo "Creating new Falcon pulse"
 mdstcl < CreateFalconPulse.tcl
 
