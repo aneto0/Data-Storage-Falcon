@@ -5,11 +5,11 @@
         "actions": [
         {
             "value": 0,
-            "command": "StopFalconPulse.sh"
+            "command": "/home/codac-dev/Projects/Data-Storage-Falcon/Tools/StopFalconPulse.sh"
         },
         {
             "value": 1,
-            "command": "StartFalconPulse.sh"
+            "command": "/home/codac-dev/Projects/Data-Storage-Falcon/Tools/StartFalconPulse.sh"
         }]
      }]
 }
