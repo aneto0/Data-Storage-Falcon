@@ -2,7 +2,7 @@
 
 This project contains all the files related to the management of the Falcon data storage and supervision system. 
 
-## Description
+## Functions
 
 The main functions of the Falcon data acquisition system are:
 * [F1] Define and manage the concept of an experiment, so that a new MDSplus pulse number is created everytime an experiment is executed;
@@ -15,7 +15,28 @@ The main functions of the Falcon data acquisition system are:
 * [F4] Allow to configure the control system with the configuration parameters that were used in a previous experiment. 
  
 These functions are implemented in the following subsystems:
-* The [Fast Data Acquisition](https://vcis-gitlab.f4e.europa.eu/aneto/PON-Sampler-Falcon) implements [F3.2.2];
-* The [PON Sampler](https://vcis-gitlab.f4e.europa.eu/aneto/PON-Sampler-Falcon) implements [F3.2.1];
-* The Data-Storage-System (described in this document) implements [F1], [F2], [F3.1] and [F4]; 
+* [F3.2.1] in the [PON Sampler](https://vcis-gitlab.f4e.europa.eu/aneto/PON-Sampler-Falcon);
+* [F3.2.2] in the [Fast Data Acquisition](https://vcis-gitlab.f4e.europa.eu/aneto/PON-Sampler-Falcon);
+* [F1], [F2] and [F4] in the Supervisor service of the Data Storage System (described in this document); 
+* [F3.1] in the Trend service of the Data Storage System (described in this document);
 
+## Networks
+
+The following data acquisition networks are deployed in the Falcon plant:
+* PON: for the configuration and monitoring of the control system. The traffic is EPICS ChannelAccess;
+* DAN: for storage of plant configuration and signals in the MDSplus database. The traffic is MDSplus mdsip;
+* SDN: to provide the time synchronisation between the PON Sampler and the Fast Data Acquisition subsystems. The traffic is multicast UDP. 
+
+## Data Storage System Architecture
+
+The Data Storage System provides the Supervisor and the Trend archiver java based services. 
+
+![alt text](Documentation/Images/networks.png "Network layout")
+
+### Supervisor
+
+The interface to the Supervisor is performed by changing the value of PV variables that are 
+
+
+  
+ 
