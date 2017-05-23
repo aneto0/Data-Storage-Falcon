@@ -10,8 +10,8 @@ The main functions of the Falcon data acquisition system are:
 * [F3] Define and manage an MDSplus database model to store the plant signals acquired by the control system; 
 * [F3.1] Some signals are to be continuosly stored, everytime the signal changes and irrespectively of the pulse number;	 
 * [F3.2] Some signals are to be stored and associated against a given pulse number of an experiment;
-* [F3.2.1] Some signals are to be stored at a rate < 1 kHz;
-* [F3.2.2] Some signals are to be stored at a rate >= 1 kHz; 
+* [F3.2.1] Some signals are to be stored at a rate of less than 1 kHz;
+* [F3.2.2] Some signals are to be stored at a rate greater or equal to 1 kHz; 
 * [F4] Allow to configure the control system with the configuration parameters that were used in a previous experiment. 
  
 These functions are implemented in the following subsystems:
