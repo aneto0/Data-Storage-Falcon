@@ -35,7 +35,26 @@ The Data Storage System provides the Supervisor and the Trend archiver java base
 
 ### Supervisor
 
-The interface to the Supervisor is performed by changing the value of PV variables that are 
+The Supervisor is a java program named [EpicsDispatcher](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/EpicsDispatcher.java). It allows to associate the execution of a command line action against the change of an EPICS PV. The configuration of the Supervisor is provided by this [configuration file](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Configurations/FalconPulseSupervisor.json).
+
+|   |   |   |   |   |
+|---|---|---|---|---|
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+
+
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+
+| PV | Value | Action | Comments |
+| ---| ----- | ------ | -------- |
+| FALCON:PULSE:START | 1 | Execute [StopFalconPulse.sh] (https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/StopFalconPulse.sh) | Puts the PON Sampler and the Fast Data Acquisition systems in IDLE (data is not stored) | 
 
 
   
