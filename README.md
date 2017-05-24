@@ -74,34 +74,36 @@ It listens to all the PV variables defined in the *falcon_trend* tree and stores
 2. Install the mdsplus-alpha libraries
  
 ```
- yum install mdsplus-alpha
- yum install mdsplus-alpha-kernel
+yum install mdsplus-alpha
+yum install mdsplus-alpha-kernel
 ```
  
 3. Edit the file /etc/mdsplus.conf and write:
  
- ```
- falcon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- falcon_conf_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- falcon_mon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- falcon_fast_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- falcon_trend_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- ```
+```
+falcon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_conf_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_mon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_fast_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_trend_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+```
 4. Retrieve the Data-Storage-Falcon project (this procedure can be performed in any PC that has access to the DAN network)
  
- ```
- cd ~
- mkdir Projects
- cd ~Projects
- git clone https://aneto@vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon.git  
- ```
+```
+cd ~
+mkdir Projects
+cd ~Projects
+git clone https://aneto@vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon.git  
+```
+
 **Note** Replace aneto with your username.
   
 5. Build the tools
- ```
- cd ~/Projects/Data-Storage-Falcon/Tools/
- make
- ```
+
+```
+cd ~/Projects/Data-Storage-Falcon/Tools/
+make
+```
   
 6. Create the trees:
   
@@ -111,14 +113,13 @@ It listens to all the PV variables defined in the *falcon_trend* tree and stores
        * All the variables whose description contain the keyword *[MON]* end will be added into the *falcon_mon* tree;
        * A variable may have on its description both keywords, separated by a comma, i.e. *[TREND,MON]*
  
- ```
- cd ~/Projects/Data-Storage-Falcon/Configurations/
- xsltproc sdd2VariablesList.xsl SDD_falcon.xml > SDD_falcon_var.xml
- export TREE_LOCATION=10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- cd ~/Projects/Data-Storage-Falcon/Tools/
- make trees
-  
- ```
+```
+cd ~/Projects/Data-Storage-Falcon/Configurations/
+xsltproc sdd2VariablesList.xsl SDD_falcon.xml > SDD_falcon_var.xml
+export TREE_LOCATION=10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+cd ~/Projects/Data-Storage-Falcon/Tools/
+make trees
+```
   
 ### Supervisor and Trend
 #### Procedure
@@ -128,38 +129,38 @@ It listens to all the PV variables defined in the *falcon_trend* tree and stores
 3. Install the mdsplus-alpha libraries
  
 ```
- yum install mdsplus-alpha
- yum install mdsplus-alpha-devel
- yum install mdsplus-alpha-java
- yum install mdsplus-alpha-kernel
- yum install mdsplus-alpha-python
+yum install mdsplus-alpha
+yum install mdsplus-alpha-devel
+yum install mdsplus-alpha-java
+yum install mdsplus-alpha-kernel
+yum install mdsplus-alpha-python
 ```
  
 4. Edit the file /etc/mdsplus.conf and write:
 
- ```
- falcon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- falcon_conf_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- falcon_mon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- falcon_fast_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- falcon_trend_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
- ```
+```
+falcon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_conf_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_mon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_fast_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_trend_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+```
 5. Retrieve the Data-Storage-Falcon project
   
- ```
- cd ~
- mkdir Projects
- cd ~Projects
- git clone https://aneto@vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon.git  
- ```
+```
+cd ~
+mkdir Projects
+cd ~Projects
+git clone https://aneto@vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon.git  
+```
 **Note** Replace aneto with your username.
   
 6. Build the tools
 
- ```
- cd ~/Projects/Data-Storage-Falcon/Tools/
- make
- ```
+```
+cd ~/Projects/Data-Storage-Falcon/Tools/
+make
+```
  
 7. Edit the inittab file and change *id:5:initdefault:* to *id:3:initdefault:* 
  
@@ -187,13 +188,13 @@ exit
  
 9. Restart the Trend service daily 
  
- ```
- su
- crontab -e
- 0 2 * * * /etc/init.d/FalconTrend restart
- exit
- exit
- ```
+```
+su
+crontab -e
+0 2 * * * /etc/init.d/FalconTrend restart
+exit
+exit
+```
 
 ## Current deployment
 
