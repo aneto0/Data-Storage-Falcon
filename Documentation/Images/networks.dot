@@ -1,0 +1,65 @@
+digraph G {
+
+    rankdir=LR
+    concentrate=true
+
+    //graph [splines=ortho, nodesep=1]
+
+    subgraph cluster_VMServer { 
+        rank = same
+        subgraph cluster_SupervisorVM {
+            supervisor [margin=0 shape=record, style=filled, fillcolor=white, color=blue, 
+                        label=<<TABLE border="0" cellborder="0"><TR><TD width="30" height="30" fixedsize="true"><IMG SRC="service.png" scale="true"/></TD><td><font point-size="10">Supervisor</font></td></TR></TABLE>>]
+            trend [margin=0 shape=record, style=filled, fillcolor=white, color=blue, 
+                        label=<<TABLE border="0" cellborder="0"><TR><TD width="30" height="30" fixedsize="true"><IMG SRC="service.png" scale="true"/></TD><td><font point-size="10">Trend</font></td></TR></TABLE>>]
+            label = "Supervisor VM";
+            style=dashed
+        }
+        subgraph cluster_PONSamplerVM {
+            PONSampler [margin=0 shape=record, style=filled, fillcolor=white, color=blue, 
+                        label=<<TABLE border="0" cellborder="0"><TR><TD width="30" height="30" fixedsize="true"><IMG SRC="service.png" scale="true"/></TD><td><font point-size="10">PON Sampler</font></td></TR></TABLE>>]
+            label = "PON Sampler VM";
+            style=dashed
+        }
+        subgraph cluster_PSH {
+            epicsIOC [margin=0 shape=record, style=filled, fillcolor=white, color=blue, 
+                        label=<<TABLE border="0" cellborder="0"><TR><TD width="30" height="30" fixedsize="true"><IMG SRC="service.png" scale="true"/></TD><td><font point-size="10">EPICS IOC</font></td></TR></TABLE>>]
+            style=dashed
+            label = "PSH";
+        }
+        mdsip [margin=0 shape=record, style=filled, fillcolor=white, color=blue, 
+               label=<<TABLE border="0" cellborder="0"><TR><TD width="30" height="30" fixedsize="true"><IMG SRC="database.png" scale="true"/></TD><td><font point-size="10">mdsip</font></td></TR></TABLE>>]
+        label = "Virtual Machines Server";
+
+    }
+    subgraph cluster_FastDAQ {
+        fastDAQ [margin=0 shape=record, style=filled, fillcolor=white, color=blue, 
+                    label=<<TABLE border="0" cellborder="0"><TR><TD width="30" height="30" fixedsize="true"><IMG SRC="service.png" scale="true"/></TD><td><font point-size="10">Fast Data Acquisition</font></td></TR></TABLE>>]
+        label = "Fast Data Acquisition Server";
+    }
+    
+    subgraph cluster_Networks {
+        PON [margin=0 shape=record, style=filled, fillcolor=white, color=red, 
+                    label=<<TABLE border="0" cellborder="0"><TR><TD width="30" height="30" fixedsize="true"><IMG SRC="cloud.png" scale="true"/></TD><td><font point-size="10">PON</font></td></TR></TABLE>>]
+        DAN [margin=0 shape=record, style=filled, fillcolor=white, color=red, 
+                    label=<<TABLE border="0" cellborder="0"><TR><TD width="30" height="30" fixedsize="true"><IMG SRC="cloud.png" scale="true"/></TD><td><font point-size="10">DAN</font></td></TR></TABLE>>]
+        SDN [margin=0 shape=record, style=filled, fillcolor=white, color=red, 
+                    label=<<TABLE border="0" cellborder="0"><TR><TD width="30" height="30" fixedsize="true"><IMG SRC="cloud.png" scale="true"/></TD><td><font point-size="10">SDN</font></td></TR></TABLE>>]
+        style=invis
+    }
+
+
+
+    supervisor -> DAN [color = "orange"]
+    PONSampler -> DAN [color = "orange"]
+    fastDAQ -> DAN [color = "orange"]
+    trend -> DAN [color = "orange"]
+    supervisor -> PON [dir="both"]
+    PONSampler -> PON [dir="both"]
+    fastDAQ -> PON [dir="both"]
+    PON -> trend 
+    PONSampler -> SDN [color = "red"]
+    SDN -> fastDAQ [color = "red"]
+    DAN -> mdsip [color = "orange", style="bold"]
+    epicsIOC -> PON [dir="both"]
+}
