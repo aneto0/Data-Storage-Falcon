@@ -221,13 +221,13 @@ exit
 
 ## Current deployment
  
- | Server             | IP            | Service                                 | Restart command | Log |
- | ------             | ---           | ------                                  | ------- | --- |
- | Falcon Server      | 10.136.30.21  | mdsip/xinetd (MDSplus database service) |  | |
- | Falcon Server      | 10.136.50.23  | ssh |  | /var/log/messages |
- | SupervisorVM       | 10.136.50.22  | ssh | | /var/log/messages |
- | SupervisorVM       | 10.136.100.28 | Supervisor | /etc/init.d/FalconSupervisor restart | /var/log/falconsupervisor | 
- | SupervisorVM       | 10.136.100.28 | Trend | /etc/init.d/FalconTrend restart | /var/log/falcontrend | 
+| Server             | IP            | Service                                 | Restart command | Log |
+| ------             | ---           | ------                                  | ------- | --- |
+| Falcon Server      | 10.136.30.21  | mdsip/xinetd (MDSplus database service) |  | |
+| Falcon Server      | 10.136.50.23  | ssh |  | /var/log/messages |
+| SupervisorVM       | 10.136.50.22  | ssh | | /var/log/messages |
+| SupervisorVM       | 10.136.100.28 | Supervisor | /etc/init.d/FalconSupervisor restart | /var/log/falconsupervisor | 
+| SupervisorVM       | 10.136.100.28 | Trend | /etc/init.d/FalconTrend restart | /var/log/falcontrend | 
  
 ## Troubleshooting
 
