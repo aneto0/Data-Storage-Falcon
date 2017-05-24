@@ -59,133 +59,133 @@ It allows to associate the execution of a command line action against the change
 
  **Note that before loading the configuration of a given experiment** (by changing the value of FALCON:PULSE:LOAD_CMD from 0 to 1) the value of the pulse number to load must have been previously set in the variable FALCON:PULSE:LOAD.
  
- ### Trend
+### Trend
  
- The Trend is a java program named [ChannelArchiver](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/ChannelArchiver.java).
+The Trend is a java program named [ChannelArchiver](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/ChannelArchiver.java).
  
- It listens to all the PV variables defined in the *falcon_trend* tree and stores a new value everytime any of the PV values change. 
+It listens to all the PV variables defined in the *falcon_trend* tree and stores a new value everytime any of the PV values change. 
  
- ## Installation
+## Installation
  
- ### MDSplus
- #### Procedure
+### MDSplus
+#### Procedure
  
- 1. Install the [MDSplus alpha database](http://www.mdsplus.org/index.php/Latest_RPM%27s_and_Yum_repositories) as a xinetd service (this is performed by following instructions provided in the [MDSplus wiki](http://www.mdsplus.org/index.php/Documentation:Tutorial:RemoteAccess)).
- 2. Install the mdsplus-alpha libraries
+1. Install the [MDSplus alpha database](http://www.mdsplus.org/index.php/Latest_RPM%27s_and_Yum_repositories) as a xinetd service (this is performed by following instructions provided in the [MDSplus wiki](http://www.mdsplus.org/index.php/Documentation:Tutorial:RemoteAccess)).
+2. Install the mdsplus-alpha libraries
+ 
+```
+ yum install mdsplus-alpha
+ yum install mdsplus-alpha-kernel
+```
+ 
+3. Edit the file /etc/mdsplus.conf and write:
  
  ```
-  yum install mdsplus-alpha
-  yum install mdsplus-alpha-kernel
+ falcon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+ falcon_conf_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+ falcon_mon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+ falcon_fast_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+ falcon_trend_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
  ```
+4. Retrieve the Data-Storage-Falcon project (this procedure can be performed in any PC that has access to the DAN network)
  
- 3. Edit the file /etc/mdsplus.conf and write:
- 
-  ```
-  falcon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  falcon_conf_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  falcon_mon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  falcon_fast_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  falcon_trend_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  ```
- 4. Retrieve the Data-Storage-Falcon project (this procedure can be performed in any PC that has access to the DAN network)
- 
-  ```
-  cd ~
-  mkdir Projects
-  cd ~Projects
-  git clone https://aneto@vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon.git  
-  ```
-  **Note** Replace aneto with your username.
+ ```
+ cd ~
+ mkdir Projects
+ cd ~Projects
+ git clone https://aneto@vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon.git  
+ ```
+**Note** Replace aneto with your username.
   
- 5. Build the tools
+5. Build the tools
  ```
-  cd ~/Projects/Data-Storage-Falcon/Tools/
-  make
+ cd ~/Projects/Data-Storage-Falcon/Tools/
+ make
  ```
   
- 6. Create the trees:
+6. Create the trees:
   
-    1. Copy the xml file exported from SDD into *Data-Storage-Falcon/Configurations/SDD_falcon.xml*. **Note the following rules**:
-        * All the variables whose name end with *_Act* will be added into the *falcon_conf* tree;
-        * All the variables whose description contain the keyword *[TREND]* end will be added into the *falcon_trend* tree;
-        * All the variables whose description contain the keyword *[MON]* end will be added into the *falcon_mon* tree;
-        * A variable may have on its description both keywords, separated by a comma, i.e. *[TREND,MON]*
+   1. Copy the xml file exported from SDD into *Data-Storage-Falcon/Configurations/SDD_falcon.xml*. **Note the following rules**:
+       * All the variables whose name end with *_Act* will be added into the *falcon_conf* tree;
+       * All the variables whose description contain the keyword *[TREND]* end will be added into the *falcon_trend* tree;
+       * All the variables whose description contain the keyword *[MON]* end will be added into the *falcon_mon* tree;
+       * A variable may have on its description both keywords, separated by a comma, i.e. *[TREND,MON]*
  
-  ```
-  cd ~/Projects/Data-Storage-Falcon/Configurations/
-  xsltproc sdd2VariablesList.xsl SDD_falcon.xml > SDD_falcon_var.xml
-  export TREE_LOCATION=10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  cd ~/Projects/Data-Storage-Falcon/Tools/
-  make trees
+ ```
+ cd ~/Projects/Data-Storage-Falcon/Configurations/
+ xsltproc sdd2VariablesList.xsl SDD_falcon.xml > SDD_falcon_var.xml
+ export TREE_LOCATION=10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+ cd ~/Projects/Data-Storage-Falcon/Tools/
+ make trees
   
-  ```
+ ```
   
- ### Supervisor and Trend
- #### Procedure
+### Supervisor and Trend
+#### Procedure
  
- 1. Log-in as *codac-dev* to the Supervisor VM (10.136.50.22).
- 2. Install the [MDSplus alpha version](http://www.mdsplus.org/index.php/Latest_RPM%27s_and_Yum_repositories)
- 3. Install the mdsplus-alpha libraries
+1. Log-in as *codac-dev* to the Supervisor VM (10.136.50.22).
+2. Install the [MDSplus alpha version](http://www.mdsplus.org/index.php/Latest_RPM%27s_and_Yum_repositories)
+3. Install the mdsplus-alpha libraries
  
+```
+ yum install mdsplus-alpha
+ yum install mdsplus-alpha-devel
+ yum install mdsplus-alpha-java
+ yum install mdsplus-alpha-kernel
+ yum install mdsplus-alpha-python
+```
+ 
+4. Edit the file /etc/mdsplus.conf and write:
+
  ```
-  yum install mdsplus-alpha
-  yum install mdsplus-alpha-devel
-  yum install mdsplus-alpha-java
-  yum install mdsplus-alpha-kernel
-  yum install mdsplus-alpha-python
+ falcon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+ falcon_conf_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+ falcon_mon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+ falcon_fast_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+ falcon_trend_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
  ```
- 
- 4. Edit the file /etc/mdsplus.conf and write:
- 
-  ```
-  falcon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  falcon_conf_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  falcon_mon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  falcon_fast_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  falcon_trend_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-  ```
- 5. Retrieve the Data-Storage-Falcon project
+5. Retrieve the Data-Storage-Falcon project
   
-  ```
-  cd ~
-  mkdir Projects
-  cd ~Projects
-  git clone https://aneto@vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon.git  
-  ```
-  **Note** Replace aneto with your username.
+ ```
+ cd ~
+ mkdir Projects
+ cd ~Projects
+ git clone https://aneto@vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon.git  
+ ```
+**Note** Replace aneto with your username.
   
- 6. Build the tools
- 
+6. Build the tools
+
  ```
-  cd ~/Projects/Data-Storage-Falcon/Tools/
-  make
- ```
- 
- 7. Edit the inittab file and change *id:5:initdefault:* to *id:3:initdefault:* 
- 
- ```
- su
- vim /etc/inittab
- exit
- reboot
+ cd ~/Projects/Data-Storage-Falcon/Tools/
+ make
  ```
  
- 8. Create the service
+7. Edit the inittab file and change *id:5:initdefault:* to *id:3:initdefault:* 
  
- ```
- su
- ln -s /home/codac-dev/Projects/Data-Storage-Falcon/Startup/FalconSupervisor /etc/init.d/
- ln -s /home/codac-dev/Projects/Data-Storage-Falcon/Startup/FalconTrend /etc/init.d/
- /sbin/chkconfig --level 3 FalconSupervisor on
- /sbin/chkconfig --level 5 FalconSupervisor on
- /sbin/chkconfig --level 3 FalconTrend on
- /sbin/chkconfig --level 5 FalconTrend on
- /etc/init.d/FalconSupervisor restart
- /etc/init.d/FalconTrend restart
- exit 
- ```
+```
+su
+vim /etc/inittab
+exit
+reboot
+```
  
- 9. Restart the Trend service daily 
+8. Create the service
+
+```
+su
+ln -s /home/codac-dev/Projects/Data-Storage-Falcon/Startup/FalconSupervisor /etc/init.d/
+ln -s /home/codac-dev/Projects/Data-Storage-Falcon/Startup/FalconTrend /etc/init.d/
+/sbin/chkconfig --level 3 FalconSupervisor on
+/sbin/chkconfig --level 5 FalconSupervisor on
+/sbin/chkconfig --level 3 FalconTrend on
+/sbin/chkconfig --level 5 FalconTrend on
+/etc/init.d/FalconSupervisor restart
+/etc/init.d/FalconTrend restart
+exit 
+```
+ 
+9. Restart the Trend service daily 
  
  ```
  su
@@ -194,12 +194,10 @@ It allows to associate the execution of a command line action against the change
  exit
  exit
  ```
- 
- 
- 
- ## Current deployment
 
- ### MDSplus database service
+## Current deployment
+
+### MDSplus database service
  
  | Server | IP | Service |
  | --- | --- | --- |
