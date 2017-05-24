@@ -41,7 +41,6 @@ CLASSPATH=/usr/local/mdsplus/java/classes/MdsPlus.jar:/usr/local/mdsplus/java/cl
 LOG_FILE=/var/log/falcontrend
 TREE_NAME=falcon_trend
 APP_NAME=ChannelArchiver
-MDSPLUS_LOC="192.168.130.46:8000::/tmp"
 
 start() {
     if pgrep -f $APP_NAME > /dev/null
@@ -51,8 +50,6 @@ start() {
     else
         echo $"Starting $PROJECT_NAME"
 
-        export falcon=$MDSPLUS_LOC
-        export falcon_trend=$MDSPLUS_LOC
         #Get the day
         PULSE_NUMBER=`date +%G%m%d`
         java -cp $CLASSPATH $APP_NAME $TREE_NAME $PULSE_NUMBER 2>&1 >> $LOG_FILE &
