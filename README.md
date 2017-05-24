@@ -63,7 +63,7 @@ It allows to associate the execution of a command line action against the change
  
 The Trend is a java program named [ChannelArchiver](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/ChannelArchiver.java).
  
-It listens to all the PV variables defined in the *falcon_trend* tree and stores a new value everytime any of the PV values change. 
+It listens to all the PV variables defined in the *falcon_trend* tree and stores a new value everytime any of the PV values changes. 
  
 ## Installation
  
@@ -81,11 +81,11 @@ yum install mdsplus-alpha-kernel
 3. Edit the file /etc/mdsplus.conf and write:
  
 ```
-falcon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_conf_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_mon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_fast_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_trend_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_conf_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_mon_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_fast_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_trend_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
 ```
 4. Retrieve the Data-Storage-Falcon project (this procedure can be performed in any PC that has access to the DAN network)
  
@@ -109,14 +109,14 @@ make
   
    1. Copy the xml file exported from SDD into *Data-Storage-Falcon/Configurations/SDD_falcon.xml*. **Note the following rules**:
        * All the variables whose name end with *_Act* will be added into the *falcon_conf* tree;
-       * All the variables whose description contain the keyword *[TREND]* end will be added into the *falcon_trend* tree;
-       * All the variables whose description contain the keyword *[MON]* end will be added into the *falcon_mon* tree;
+       * All the variables whose description contain the keyword *[TREND]* will be added into the *falcon_trend* tree;
+       * All the variables whose description contain the keyword *[MON]* will be added into the *falcon_mon* tree;
        * A variable may have on its description both keywords, separated by a comma, i.e. *[TREND,MON]*
  
 ```
 cd ~/Projects/Data-Storage-Falcon/Configurations/
 xsltproc sdd2VariablesList.xsl SDD_falcon.xml > SDD_falcon_var.xml
-export TREE_LOCATION=10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+export TREE_LOCATION=10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
 cd ~/Projects/Data-Storage-Falcon/Tools/
 make trees
 ```
@@ -139,11 +139,11 @@ yum install mdsplus-alpha-python
 4. Edit the file /etc/mdsplus.conf and write:
 
 ```
-falcon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_conf_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_mon_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_fast_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_trend_path 10.136.30.TODO:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_conf_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_mon_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_fast_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_trend_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
 ```
 5. Retrieve the Data-Storage-Falcon project
   
@@ -168,10 +168,33 @@ make
 su
 vim /etc/inittab
 exit
-reboot
 ```
- 
-8. Create the service
+
+8. Disable unused services
+
+```
+su
+setup
+```
+
+Disable the following services:
+
+* bluetooth
+* ip6tables
+* iptables
+* postgresql-9.3
+* CTRL-*
+* MAG-*
+* TEST-*
+* sup-*
+* css-*
+
+```
+OK->Quit
+```
+
+
+9. Create the service
 
 ```
 su
@@ -197,11 +220,15 @@ exit
 ```
 
 ## Current deployment
+ 
+ | Server             | IP            | Service                                 | Restart command | Log |
+ | ------             | ---           | ------                                  | ------- | --- |
+ | Falcon Server      | 10.136.30.21  | mdsip/xinetd (MDSplus database service) |  | |
+ | Falcon Server      | 10.136.50.23  | ssh |  | /var/log/messages |
+ | SupervisorVM       | 10.136.50.22  | ssh | | /var/log/messages |
+ | SupervisorVM       | 10.136.100.28 | Supervisor | /etc/init.d/FalconSupervisor restart | /var/log/falconsupervisor | 
+ | SupervisorVM       | 10.136.100.28 | Trend | /etc/init.d/FalconTrend restart | /var/log/falcontrend | 
+ 
+## Troubleshooting
 
-### MDSplus database service
- 
- | Server | IP | Service |
- | --- | --- | --- |
- | falcondata.epfl.ch | 10.136.30.TODO | mdsip/xinetd |
- 
- 
+TODO
