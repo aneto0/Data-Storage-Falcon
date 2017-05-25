@@ -114,8 +114,8 @@ make
        * A variable may have on its description both keywords, separated by a comma, i.e. *[TREND,MON]*
  
 ```
-cd ~/Projects/Data-Storage-Falcon/Configurations/
-xsltproc sdd2VariablesList.xsl SDD_falcon.xml > SDD_falcon_var.xml
+cd ~/Projects/Data-Storage-Falcon/Tools/
+xsltproc sdd2VariablesList.xsl ../Configurations/SDD_falcon.xml > ../Configurations/SDD_falcon_var.xml
 export TREE_LOCATION=10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
 cd ~/Projects/Data-Storage-Falcon/Tools/
 make trees
