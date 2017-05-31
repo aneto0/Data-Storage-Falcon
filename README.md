@@ -68,6 +68,9 @@ It listens to all the PV variables defined in the *falcon_trend* tree and stores
 ## Installation
  
 ### MDSplus
+
+This procedure is to be performed in the server that will host the database.
+
 #### Procedure
  
 1. Install the [MDSplus alpha database](http://www.mdsplus.org/index.php/Latest_RPM%27s_and_Yum_repositories) as a xinetd service (this is performed by following instructions provided in the [MDSplus wiki](http://www.mdsplus.org/index.php/Documentation:Tutorial:RemoteAccess)).
@@ -81,16 +84,16 @@ yum install mdsplus-alpha-kernel
 3. Edit the file /etc/mdsplus.conf and write:
  
 ```
-falcon_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_conf_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_mon_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_fast_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_trend_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_path /raiddata/mdsplus/trees
+falcon_conf_path /raiddata/mdsplus/trees
+falcon_mon_path /raiddata/mdsplus/trees
+falcon_fast_path /raiddata/mdsplus/trees
+falcon_trend_path /raiddata/mdsplus/trees
 ```
 4. Retrieve the Data-Storage-Falcon project (this procedure can be performed in any PC that has access to the DAN network)
  
 ```
-cd ~
+cd ~ 
 mkdir Projects
 cd ~Projects
 git clone https://aneto@vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon.git  
@@ -116,7 +119,7 @@ make
 ```
 cd ~/Projects/Data-Storage-Falcon/Tools/
 xsltproc sdd2VariablesList.xsl ../Configurations/SDD_falcon.xml > ../Configurations/SDD_falcon_var.xml
-export TREE_LOCATION=10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+export TREE_LOCATION=10.136.30.21:8000::/raiddata/mdsplus/trees
 cd ~/Projects/Data-Storage-Falcon/Tools/
 make trees
 ```
@@ -139,12 +142,13 @@ yum install mdsplus-alpha-python
 4. Edit the file /etc/mdsplus.conf and write:
 
 ```
-falcon_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_conf_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_mon_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_fast_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
-falcon_trend_path 10.136.30.21:8000::/path/tofolder/where/mdsplustrees/arestored/TODO
+falcon_path 10.136.30.21:8000::/raiddata/mdsplus/trees
+falcon_conf_path 10.136.30.21:8000::/raiddata/mdsplus/trees
+falcon_mon_path 10.136.30.21:8000::/raiddata/mdsplus/trees
+falcon_fast_path 10.136.30.21:8000::/raiddata/mdsplus/trees
+falcon_trend_path 10.136.30.21:8000::/raiddata/mdsplus/trees
 ```
+
 5. Retrieve the Data-Storage-Falcon project
   
 ```
