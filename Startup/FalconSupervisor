@@ -37,7 +37,7 @@
 PROJECT_NAME="Falcon Supervisor"
 CODE_DIRECTORY=/home/codac-dev/Projects/Data-Storage-Falcon
 CONFIG_FILE_LOC=$CODE_DIRECTORY/Configurations/FalconPulseSupervisor.json
-CLASSPATH=/usr/local/mdsplus/java/classes/MdsPlus.jar:/usr/local/mdsplus/java/classes/mdsobjects.jar:$CODE_DIRECTORY/Build/:/opt/epics-3.15.5/lib/jca-2.3.6.jar:/opt/codac-5.4/lib/caj-1.1.15.jar:$CODE_DIRECTORY/Tools/javax.json-1.0.jar
+CLASSPATH=/usr/local/mdsplus/java/classes/MdsPlus.jar:/usr/local/mdsplus/java/classes/mdsobjects.jar:$CODE_DIRECTORY/Build/:/opt/codac/lib/jca-2.3.6.jar:/opt/codac/lib/caj-1.1.15.jar:$CODE_DIRECTORY/Tools/javax.json-1.0.jar
 LOG_FILE=/var/log/falconsupervisor
 APP_NAME=EpicsDispatcher
 

@@ -79,6 +79,7 @@ This procedure is to be performed in the server that will host the database.
 ```
 yum install mdsplus-alpha
 yum install mdsplus-alpha-kernel
+yum install mdsplus-alpha-java
 ```
  
 3. Edit the file /etc/mdsplus.conf and write:
@@ -112,7 +113,7 @@ make
   
    1. Copy the xml file exported from SDD into *Data-Storage-Falcon/Configurations/SDD_falcon.xml*. **Note the following rules**:
        * All the variables whose name end with *_Act* will be added into the *falcon_conf* tree;
-       * All the variables whose description contain the keyword *[TREND]* will be added into the *falcon_trend* tree;
+       * All the variables will be added into the *falcon_trend* tree;
        * All the variables whose description contain the keyword *[MON]* will be added into the *falcon_mon* tree;
        * A variable may have on its description both keywords, separated by a comma, i.e. *[TREND,MON]*
  
