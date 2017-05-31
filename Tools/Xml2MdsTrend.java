@@ -73,8 +73,8 @@ class Xml2MdsTrend
                 try {
                     currDescription = st0.nextToken();
                 }catch(Exception exc){currDescription = null;}
-                //Check if TREND was set
-                boolean storeTrend = false;
+                //Check if TREND was set. All variables are exported
+                /*boolean storeTrend = false;
                 if (currDescription != null) {
                     int indexOfBracket = currDescription.indexOf('[');
                     if (indexOfBracket != -1) {
@@ -87,7 +87,7 @@ class Xml2MdsTrend
                 }
                 if (!storeTrend) {
                     continue;
-                }
+                }*/
                 st0.nextToken();
                 st0.nextToken();
                 st0.nextToken();

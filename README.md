@@ -114,8 +114,7 @@ make
    1. Copy the xml file exported from SDD into *Data-Storage-Falcon/Configurations/SDD_falcon.xml*. **Note the following rules**:
        * All the variables whose name end with *_Act* will be added into the *falcon_conf* tree;
        * All the variables will be added into the *falcon_trend* tree;
-       * All the variables whose description contain the keyword *[MON]* will be added into the *falcon_mon* tree;
-       * A variable may have on its description both keywords, separated by a comma, i.e. *[TREND,MON]*
+       * All the variables whose names ends with any of the following keys *{"-RDI", "-XS", "-XI0", "-XI", "-IN", "-RDO", "-IN", "-YT", "-XA", "-XA0", "-XA", "-XA01", "-XA02", "-XA1", "-XA2"}* will be added into the *falcon_mon* tree;       
  
 ```
 cd ~/Projects/Data-Storage-Falcon/Tools/
