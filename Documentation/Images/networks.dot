@@ -58,8 +58,8 @@ digraph G {
     PONSampler -> PON [dir="both"]
     fastDAQ -> PON [dir="both"]
     PON -> trend 
-    PONSampler -> SDN [color = "red"]
-    SDN -> fastDAQ [color = "red"]
+    SDN -> PONSampler [color = "red"]
+    fastDAQ -> SDN [color = "red"]
     DAN -> mdsip [color = "orange", style="bold"]
     epicsIOC -> PON [dir="both"]
 }
