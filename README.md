@@ -67,7 +67,7 @@ The current (i.e. latest executed) pulse number is available in the PV variable 
 
 | PV | Value |  Comments |
 | ---| ----- |  -------- |
-| FALCON:PULSE:NUMBER| The curret pulse number | Gets the current (latest) pulse number |
+| FALCON:PULSE:NUMBER| The current pulse number | Gets the current (latest) pulse number |
 
  
 ### Trend
