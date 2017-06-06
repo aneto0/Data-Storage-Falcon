@@ -59,6 +59,17 @@ It allows to associate the execution of a command line action against the change
 
  **Note that before loading the configuration of a given experiment** (by changing the value of FALCON:PULSE:LOAD_CMD from 0 to 1) the value of the pulse number to load must have been previously set in the variable FALCON:PULSE:LOAD.
  
+| PV | Value |  Comments |
+| ---| ----- |  -------- |
+| FALCON:PULSE:LOAD| Pulse number to be loaded | Sets the pulse number to be load by the FALCON:PULSE:LOAD_CMD command | 
+ 
+The current (i.e. latest executed) pulse number is available in the PV variable *FALCON:PULSE:NUMBER*
+
+| PV | Value |  Comments |
+| ---| ----- |  -------- |
+| FALCON:PULSE:NUMBER| The curret pulse number | Gets the current (latest) pulse number |
+
+ 
 ### Trend
  
 The Trend is a java program named [ChannelArchiver](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/ChannelArchiver.java).
