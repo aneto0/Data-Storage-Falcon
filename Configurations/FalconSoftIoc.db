@@ -1,59 +1,59 @@
-record( longin, "FALCON:PULSE:START")
+record( longin, "TEST-AUX-FDAQ:Pulse_Start")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:PULSE:NUMBER")
+record( longin, "TEST-AUX-FDAQ:Pulse_Number")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:PULSE:LOAD")
+record( longin, "TEST-AUX-FDAQ:Pulse_Load")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:PULSE:LOAD_CMD")
+record( longin, "TEST-AUX-FDAQ:Pulse_Load_Cmd")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:FAST:STATUS_CMD")
+record( longin, "TEST-AUX-FDAQ:Fast_Status_CMD")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:FAST:STATUS")
+record( longin, "TEST-AUX-FDAQ:Fast_Status")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:FAST:ERROR")
+record( longin, "TEST-AUX-FDAQ:Fast_Error")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:FAST:ERROR_RST")
+record( longin, "TEST-AUX-FDAQ:Fast_Error_Rst")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:PONSAMP:STATUS_CMD")
+record( longin, "TEST-AUX-FDAQ:Ponsamp_Status_CMD")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:PONSAMP:STATUS")
+record( longin, "TEST-AUX-FDAQ:Ponsamp_Status")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:PONSAMP:ERROR")
+record( longin, "TEST-AUX-FDAQ:Ponsamp_Error")
 {
    field(DTYP, "Soft Channel")
 }
 
-record( longin, "FALCON:PONSAMP:ERROR_RST")
+record( longin, "TEST-AUX-FDAQ:Ponsamp_Error_Rst")
 {
    field(DTYP, "Soft Channel")
 }

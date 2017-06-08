@@ -1,7 +1,7 @@
 {
     "pvlist": [
     {
-        "name": "FALCON:PULSE:START",
+        "name": "TEST-AUX-FDAQ:Pulse_Start",
         "actions": [
         {
             "value": 0,
@@ -13,7 +13,7 @@
         }]
      },
      {
-        "name": "FALCON:PULSE:LOAD_CMD",
+        "name": "TEST-AUX-FDAQ:Pulse_Load_Cmd",
         "actions": [
         {
             "value": 1,
