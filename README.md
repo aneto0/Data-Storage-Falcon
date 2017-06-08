@@ -53,21 +53,21 @@ It allows to associate the execution of a command line action against the change
 
 | PV | Value | Action | Comments |
 | ---| ----- | ------ | -------- |
-| FALCON:PULSE:START | 0 | Executes [StopFalconPulse.sh](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/StopFalconPulse.sh) | Changes the PON Sampler and the Fast Data Acquisition systems into IDLE (so that data is no longer stored in MDSplus). | 
-| FALCON:PULSE:START | 1 | Executes [StartFalconPulse.sh](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/StopFalconPulse.sh) | 1. Creates a new MDSplus pulse number by executing [CreateFalconPulse.tcl](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/CreateFalconPulse.tcl); <br/> 2. Stores the current control system configuration into the MDSplus configuration tree by executing the [SaveEpicsSnapshotInMds](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/SaveEpicsSnapshotInMds.java) java program; <br/> 3. Changes the PON Sampler and the Fast Data Acquisition systems into RUNNING (so that data is stored in MDSplus). |
-| FALCON:PULSE:LOAD_CMD | 1 | Executes [LoadFalconPulse.sh](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/LoadFalconPulse.sh) | Executes the [LoadEpicsSnapshotFromMds](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/LoadEpicsSnapshotFromMds.java) java program in order to load the control system configuration variables with the falcon_conf tree values that were stored for the pulse number defined in the PV variable FALCON:PULSE:LOAD. |
+| TEST-AUX-FDAQ:Pulse_Start | 0 | Executes [StopFalconPulse.sh](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/StopFalconPulse.sh) | Changes the PON Sampler and the Fast Data Acquisition systems into IDLE (so that data is no longer stored in MDSplus). | 
+| TEST-AUX-FDAQ:Pulse_Start | 1 | Executes [StartFalconPulse.sh](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/StopFalconPulse.sh) | 1. Creates a new MDSplus pulse number by executing [CreateFalconPulse.tcl](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/CreateFalconPulse.tcl); <br/> 2. Stores the current control system configuration into the MDSplus configuration tree by executing the [SaveEpicsSnapshotInMds](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/SaveEpicsSnapshotInMds.java) java program; <br/> 3. Changes the PON Sampler and the Fast Data Acquisition systems into RUNNING (so that data is stored in MDSplus). |
+| TEST-AUX-FDAQ:Pulse_Load_Cmd | 1 | Executes [LoadFalconPulse.sh](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/LoadFalconPulse.sh) | Executes the [LoadEpicsSnapshotFromMds](https://vcis-gitlab.f4e.europa.eu/aneto/Data-Storage-Falcon/blob/master/Tools/LoadEpicsSnapshotFromMds.java) java program in order to load the control system configuration variables with the falcon_conf tree values that were stored for the pulse number defined in the PV variable TEST-AUX-FDAQ:Pulse_Load. |
 
- **Note that before loading the configuration of a given experiment** (by changing the value of FALCON:PULSE:LOAD_CMD from 0 to 1) the value of the pulse number to load must have been previously set in the variable FALCON:PULSE:LOAD.
+ **Note that before loading the configuration of a given experiment** (by changing the value of TEST-AUX-FDAQ:Pulse_Load_Cmd from 0 to 1) the value of the pulse number to load must have been previously set in the variable TEST-AUX-FDAQ:Pulse_Load.
  
 | PV | Value |  Comments |
 | ---| ----- |  -------- |
-| FALCON:PULSE:LOAD| Pulse number to be loaded | Sets the pulse number to be load by the FALCON:PULSE:LOAD_CMD command | 
+| TEST-AUX-FDAQ:Pulse_Load| Pulse number to be loaded | Sets the pulse number to be load by the TEST-AUX-FDAQ:Pulse_Load command | 
  
-The current (i.e. latest executed) pulse number is available in the PV variable *FALCON:PULSE:NUMBER*
+The current (i.e. latest executed) pulse number is available in the PV variable *TEST-AUX-FDAQ:Pulse_Number*
 
 | PV | Value |  Comments |
 | ---| ----- |  -------- |
-| FALCON:PULSE:NUMBER| The current pulse number | Gets the current (latest) pulse number |
+| TEST-AUX-FDAQ:Pulse_Number| The current pulse number | Gets the current (latest) pulse number |
 
  
 ### Trend
