@@ -10,7 +10,7 @@ import MDSplus.*;
 public class ChannelArchiver 
 {
     static int SEGMENT_SIZE;
-    static int MAX_QUEUE_LEN  = 10000;
+    static int MAX_QUEUE_LEN  = 20000;
     static boolean debug = false;
     static Hashtable monitorInfo = new Hashtable();
     static Hashtable bufferH = new Hashtable(); //Indexed by path name
@@ -334,7 +334,7 @@ public class ChannelArchiver
                         node.makeTimestampedSegment(descr.getVals(), descr.getTimes());
                     else
                     {
-                        System.out.println("FACCIO PUT ROW: "+descr.getVal()+"  "+descr.getTimes()[0]);
+                        //System.out.println("FACCIO PUT ROW: "+descr.getVal()+"  "+descr.getTimes()[0]);
                         node.putRow(descr.getVal(), descr.getTimes()[0]);
                     }
                 }catch(Exception exc){ System.err.println("Error in putTimestampedSegment: " + exc);}
