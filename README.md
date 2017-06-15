@@ -229,7 +229,7 @@ exit
 ```
 su
 crontab -e
-0 2 * * * /etc/init.d/FalconTrend restart
+0 2 * * * . /etc/profile.d/mdsplus.sh; /etc/init.d/FalconTrend restart
 exit
 exit
 ```
